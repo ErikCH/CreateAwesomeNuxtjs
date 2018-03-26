@@ -12,7 +12,7 @@
 <body>
     <div id="el">
         <h1>
-            {{ hello }}
+            {{ val ? data : otherData }}
         </h1>
     </div>
 
@@ -21,7 +21,10 @@
             el: '#el',
             data() {
                 return {
-                    hello: 'Hello World'
+                    hello: 'Hello World',
+                    data: 'Some Data',
+                    otherData: 'Other Data',
+                    val: false
                 }
             },
             beforeCreate() {
