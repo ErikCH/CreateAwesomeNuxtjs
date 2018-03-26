@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World App</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>
+            {{ checker() }}
+        </h1>
+        {{incrementer}}
+        <br/>
+        <form>
+            <button @click.prevent="onClick()"> Press Me</button>
+        </form>
+        <input type="text" @keyup.ctrl.enter.exact="incrementer++" />
+    </div>
+
+    <script>
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    hello: 'Hello World',
+                    data: 'Some Data',
+                    otherData: 'Other Data',
+                    val: true,
+                    incrementer: 0
+                }
+            },
+            methods: {
+                checker() {
+                    return this.val ?
+                        this.data : this.otherData;
+                },
+                onClick() {
+                    this.incrementer++;
+
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>
