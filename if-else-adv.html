@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>If else App</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <button @click="value=1">Say Hello</button>
+        <button @click="value=2">Say Goodbye</button>
+        <button @click="value=12323">Default</button>
+        <h1 v-if="value == 1">Hello</h1>
+        <h1 v-else-if="value == 2">Goodbye</h1>
+        <h1 v-else>Yo Default</h1>
+        <div v-if="value == 1">
+            <label for="">UserName</label>
+            <input placeholder="Enter Username" key="user-input">
+        </div>
+        <div v-else>
+            <label for="">Address</label>
+            <input placeholder="Enter Address" key="address-input">
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    value: 0
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

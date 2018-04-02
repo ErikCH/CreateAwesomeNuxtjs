@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="el">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-info">
+                <div class="panel-heading">Checkout Page</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h4>
+                                <strong>Enter Your Information</strong>
+                            </h4>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <strong>First Name:</strong>
+                                <input v-model.lazy="order.firstName" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Last Name:</strong>
+                                <input v-model.trim="order.lastName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <strong>Address:</strong>
+                            </div>
+                            <div class="col-md-12">
+                                <input v-model.trim="order.address" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <strong>City:</strong>
+                            </div>
+                            <div class="col-md-12">
+                                <input v-model.trim="order.city" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <strong>State:</strong>
+                                <select class="form-control" v-model="order.state">
+                                    <option disabled value="">State</option>
+                                    <option>
+                                        Nevada
+                                    </option>
+                                    <option>
+                                        California
+                                    </option>
+                                    <option>
+                                        Utah
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <strong>Zip / Postal Code:</strong>
+                                <input class="form-control" type="string" v-model="order.zip" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 boxes">
+                                <input type="checkbox" id="gift" value="true" v-model="order.checkbox" true-value="yes Gift" false-value="No Gift">
+                                <label for="checkbox">Ship As Gift?</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 boxes">
+                                <input type="radio" id="home" value="home" v-model="order.addressSelection">
+                                <label for=" home ">Home</label>
+                                <input type="radio" id="business " value="business" v-model="order.addressSelection">
+                                <label for="business ">Business</label>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-md-6 ">
+                                <button @click="onButtonClick()" type="submit " class="btn btn-primary submit ">Place Order</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 verify ">
+                            <pre>
+                              First Name:  {{order.firstName}}
+                              Last Name:    {{order.lastName}} 
+                              Address: {{order.address}} 
+                              City: {{order.city}} 
+                              Zip: {{typeof(order.zip)}} 
+                              State: {{order.state}} 
+                              Method: {{order.addressSelection}} 
+                              Gift: {{order.checkbox}} 
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        //v-model
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    order: {}
+                }
+            },
+            methods: {
+                onButtonClick() {
+                    this.order = {};
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>If else App</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1 v-if="false">Hello World</h1>
+        <img :src="picture" alt="">
+        <br> {{rawHTML}}
+        <h1 v-html="rawHTML"></h1>
+
+    </div>
+
+    <script>
+        //v-show v-bind v-html
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    picture: 'http://source.unsplash.com/random/300x300',
+                    rawHTML: '<h1 style="color: red">Hi There<h1>'
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>
