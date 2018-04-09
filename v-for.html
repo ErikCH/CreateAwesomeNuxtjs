@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>V-for App</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <ul>
+            <li v-for="(book, index) in books" :key="index">{{index}}: {{book}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="(value, key, index) in myBook">{{index}} {{key}}: {{value}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="n in 20">{{n}}</li>
+        </ul>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    books: [
+                        'war and peace',
+                        'Book 2'
+                    ],
+                    myBook: {
+                        author: 'Smith',
+                        title: 'War Of The Worlds'
+                    }
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>
