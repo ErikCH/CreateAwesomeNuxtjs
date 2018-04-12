@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Comp Prop</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        {{welcome}}
+        <br>
+        <label for="">Find Movie</label>
+        <br>
+        <input v-model="findMovie">
+        <ul>
+            <li v-for="movie in filteredMovies">{{movie}}</li>
+        </ul>
+        <button @click="pressed">Press Me</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    welcome: "Movie Finder",
+                    findMovie: '',
+                    movies: [
+                        'Gone with the wind',
+                        'Gandi',
+                        'American Pie',
+                        'American Beauty',
+                        'Jack And Jill',
+                        'Grease',
+                        'Final Destination'
+                    ]
+                }
+            },
+            methods: {
+                pressed() {
+                    this.filteredMovies = ['Die Hard', 'Illusionist', 'Rampage'];
+                }
+            },
+            computed: {
+                filteredMovies: {
+                    get() {
+                        let filter = new RegExp(this.findMovie, 'i');
+                        return this.movies.filter(el => el.match(filter));
+                    },
+                    set(val) {
+                        this.movies = val;
+                    }
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>
