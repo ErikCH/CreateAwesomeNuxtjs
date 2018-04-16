@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Class Binding</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .active {
+            color: green;
+            background-color: yellow;
+        }
+
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="el">
+        <button @click="isActive = !isActive">Toggle</button>
+        <h1 v-bind:class="{'text-danger': isActive}">Hello World</h1>
+        <h2 :style="myStyles">Hello There</h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    isActive: false,
+                    myStyles: {
+                        fontSize: '100px',
+                        color: 'blue'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

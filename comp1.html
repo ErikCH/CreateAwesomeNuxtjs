@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Local and Global Components</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <!-- <my-local-comp></my-local-comp> -->
+        <my-global-comp></my-global-comp>
+    </div>
+    <template id="glob">
+        <div>
+            <h1>
+                Hi This is a global component not using backticks
+            </h1>
+            {{mess}}
+        </div>
+    </template>
+
+    <script>
+
+        const local = {
+            template: `<div><h1>
+            Hi From Local Component</h1>
+            <my-global-comp></my-global-comp>
+            </div>`
+        }
+        Vue.component('my-global-comp', {
+            template: '#glob',
+            data() {
+                return {
+                    mess: "hi there"
+                }
+            }
+        })
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance'
+                }
+            },
+            components: {
+                'my-local-comp': local
+            }
+        });
+    </script>
+</body>
+
+</html>

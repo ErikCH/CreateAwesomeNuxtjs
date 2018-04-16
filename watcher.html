@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Watchers</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        {{counter}}
+        <br>
+        <button @click="counter++">Press Me</button>
+        <input v-model="someText">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#el',
+            data() {
+                return {
+                    counter: 0,
+                    someText: ''
+                }
+            },
+            watch: {
+                counter(newVal, oldVal) {
+                    console.log(`old value ${oldVal}, new value ${newVal}`);
+
+                },
+                someText: {
+                    handler: 'updateCounter',
+                    immediate: true
+                }
+
+            },
+            methods: {
+                updateCounter() {
+                    this.counter++;
+                    console.log('updated');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

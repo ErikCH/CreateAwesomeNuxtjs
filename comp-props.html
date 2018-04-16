@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Props</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <my-global-comp :repeat="myVal"></my-global-comp>
+    </div>
+    <template id="glob">
+        <div>
+            <h1>
+                Hi This is a global component not using backticks
+            </h1>
+            <h1 v-for="n in repeat" :key="n">{{mess}}</h1>
+        </div>
+    </template>
+
+    <script>
+
+        Vue.component('my-global-comp', {
+            template: '#glob',
+            data() {
+                return {
+                    mess: "hi there"
+                }
+            },
+            props: [
+                'repeat'
+            ]
+
+        })
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                    myVal: 10
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slots</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <my-global-comp>
+            <h1 slot="header">
+                This is the header
+            </h1>
+            <h2 slot="footer">
+                this is the footer
+            </h2>
+            <h1>YO!</h1>
+        </my-global-comp>
+    </div>
+    <template id="glob">
+        <div>
+            <slot name="header"></slot>
+            <h1>{{mess}}</h1>
+            <slot name="footer"></slot>
+            <slot></slot>
+        </div>
+    </template>
+
+    <script>
+
+        Vue.component('my-global-comp', {
+            template: '#glob',
+            data() {
+                return {
+                    mess: "hi there"
+                }
+            }
+        })
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                    message2: 'passed information using slots'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
