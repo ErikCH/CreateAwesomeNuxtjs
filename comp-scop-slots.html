@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scoped Slots</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <todo-comp>
+            <div slot-scope="{ todo }">
+                <span v-if="todo.done">✓</span>
+                {{todo.name}}
+            </div>
+        </todo-comp>
+    </div>
+    <template id="glob">
+        <div>
+            <h1>My todo List</h1>
+            <ul>
+                <li v-for="todo in todos" :key="todo.name">
+                    <slot :todo="todo">
+                        //failback content {{todo.name}}
+                    </slot>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+
+        Vue.component('todo-comp', {
+            template: '#glob',
+            data() {
+                return {
+                    todos: [
+                        { name: 'Fix computer', done: false },
+                        { name: 'Take out the garbage', done: true },
+                        { name: 'Finish homework', done: false }
+                    ]
+                }
+            }
+        })
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

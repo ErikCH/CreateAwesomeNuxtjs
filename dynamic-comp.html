@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic Components</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <button @click="swap()">Swap</button>
+        <keep-alive>
+
+            <component :is="dynamicComp"></component>
+        </keep-alive>
+    </div>
+
+    <!--Component 1-->
+    <template id="glob1">
+        <div>
+            <h1>Component 1</h1>
+            <div v-if="showMessage">
+                {{message}}
+            </div>
+            <button @click="showMessage=! showMessage">Toggle</button>
+        </div>
+    </template>
+
+    <!--Component 2-->
+    <template id="glob2">
+        <div>
+            <h1>Component 2</h1>
+            <div v-if="showMessage">
+                {{message}}
+            </div>
+            <button @click="showMessage=! showMessage">Toggle</button>
+        </div>
+    </template>
+
+    <script>
+
+        Vue.component('my-comp1', {
+            template: '#glob1',
+            data() {
+                return {
+                    showMessage: 'true',
+                    message: 'Hello from comp1',
+                }
+            }
+        })
+
+        Vue.component('my-comp2', {
+            template: '#glob2',
+            data() {
+                return {
+                    showMessage: 'true',
+                    message: 'Hello From comp2'
+                }
+            }
+        })
+
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                    dynamicComp: 'my-comp1'
+                }
+            },
+            methods: {
+                swap() {
+                    this.dynamicComp = this.dynamicComp === 'my-comp1' ? 'my-comp2' : 'my-comp1';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
