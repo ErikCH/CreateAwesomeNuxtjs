@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mixins</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <button @click="pressMe">Press me</button>
+    </div>
+
+
+    <script>
+
+        Vue.mixin({
+            created() {
+                console.log("this is from a global mixin")
+            }
+        })
+        const myMixin = {
+            data() {
+                return {
+                    someInfo: 'This is from the mixin'
+                }
+            },
+            methods: {
+                pressMe() {
+                    alert('hello')
+                }
+            }
+        }
+        const val = new Vue({
+            el: '#el',
+            mixins: [myMixin],
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

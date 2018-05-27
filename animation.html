@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animation Basics</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .box {
+            border: 5px solid red;
+            height: 60px;
+            position: relative;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 5s ease-out;
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+
+        .button-info {
+            position: relative;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="el">
+        <div class="box">
+            <transition name="fade">
+                <h1 v-if="showMessage">{{message}}</h1>
+            </transition>
+        </div>
+        <div @click="showMessage = !showMessage" class="button-info">
+            <button>PressMe</button>
+        </div>
+    </div>
+
+
+    <script>
+
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                    showMessage: true
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

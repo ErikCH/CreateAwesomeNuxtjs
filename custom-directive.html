@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Custom Directives</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+        <h2 v-colorful.orange="'blue'"> Hi! This is attached to a new custom directive!</h2>
+    </div>
+
+    <script>
+        Vue.directive('colorful', {
+            inserted(el, binding) {
+                if (binding.modifiers.red) {
+
+                    el.style.color = 'red'
+                } else {
+
+                    el.style.color = binding.value;
+                }
+                console.log(binding);
+            }
+        })
+
+        const val = new Vue({
+            el: '#el',
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

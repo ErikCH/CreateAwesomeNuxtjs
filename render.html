@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Render</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="el">
+        <h1>{{message}}</h1>
+    </div>
+
+    <script>
+
+        const val = new Vue({
+            el: '#el',
+            // templte: `
+            //     <div>
+            //         <h1>Hello World</h1>
+            //     </div>
+            // `,
+            render(createElement){
+                return createElement('h1',{
+                    'class': 'textStyle',
+                    on: {
+                        click(e) {
+                            alert('clicked ' + e)
+                        }
+                    }
+                },
+                 this.message)
+            },
+            data() {
+                return {
+                    message: 'Root Vue Instance',
+                }
+            },
+            methods: {
+               pressMe() {
+                   alert('hi');
+               }
+            }
+        });
+    </script>
+</body>
+
+</html>
