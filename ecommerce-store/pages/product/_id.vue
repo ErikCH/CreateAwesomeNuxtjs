@@ -6,13 +6,16 @@
 </template>
 
 <script>
-import { db } from "~/plugins/firebase";
-import Game from "~/components/game";
+import { db } from '~/plugins/firebase';
+import Game from '~/components/game';
 export default {
+  validate({ params }) {
+    return params.id !== undefined;
+  },
   components: { Game },
   async asyncData({ params }) {
     const response = await db
-      .collection("products")
+      .collection('products')
       .doc(params.id)
       .get();
     const product = await response.data();
