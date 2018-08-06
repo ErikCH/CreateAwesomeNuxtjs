@@ -1,62 +1,68 @@
-const pkg = require("./package");
+const pkg = require('./package');
 
-const nodeExternals = require("webpack-node-externals");
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: "universal",
+  mode: 'universal',
 
   /*
   ** Headers of the page
   */
   head: {
-    title: "Awesome Video Game Store",
+    title: 'Awesome Video Game Store',
     meta: [
-      { charset: "utf-8" },
+      { charset: 'utf-8' },
       {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1"
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
       },
       {
-        hid: "description",
-        name: "description",
+        hid: 'description',
+        name: 'description',
         content: pkg.description
       }
     ],
+    router: {
+      //new
+      middleware: 'session'
+    },
     link: [
       {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/favicon.ico"
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
       },
       {
-        rel: "stylesheet",
+        rel: 'stylesheet',
         href:
-          "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
+          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
     ]
   },
 
+  serverMiddleware: ['~api/index.js'],
+
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: "#FFFFFF" },
+  loading: { color: '#FFFFFF' },
 
   /*
   ** Global CSS
   */
-  css: ["vuetify/src/stylus/main.styl"],
+  css: ['vuetify/src/stylus/main.styl'],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ["@/plugins/vuetify", "@/plugins/firebase"],
+  plugins: ['@/plugins/vuetify', '@/plugins/firebase'],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    "@nuxtjs/axios"
+    '@nuxtjs/axios'
   ],
   /*
   ** Axios module configuration

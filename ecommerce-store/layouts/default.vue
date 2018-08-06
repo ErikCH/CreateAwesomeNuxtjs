@@ -28,6 +28,11 @@
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn v-if="!mySession" @click="login()">Login</v-btn>
+        <v-btn v-else @click="signout()">Logout</v-btn>
+      </v-toolbar-items>
+
     </v-toolbar>
     <v-content>
       <v-container>
@@ -41,6 +46,9 @@
 </template>
 
 <script>
+import { db } from '~/plugins/firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 export default {
   data() {
     return {
@@ -48,16 +56,61 @@ export default {
       drawer: false,
       fixed: false,
       items: [
-        { icon: "apps", title: "Welcome", to: "/" },
         {
-          icon: "shopping_cart",
-          title: "Checkout",
-          to: "/Checkout"
+          icon: 'apps',
+          title: 'Welcome',
+          to: '/'
+        },
+        {
+          icon: 'shopping_cart',
+          title: 'Checkout',
+          to: '/Checkout'
+        },
+        {
+          icon: 'security',
+          title: 'Secret',
+          to: '/secret'
         }
       ],
       miniVariant: false,
-      title: "Video Game Store"
+      title: 'Video Game Store'
     };
+  },
+  created() {
+    this.$store.dispatch('setSession');
+  },
+  methods: {
+    login() {
+      console.log('login');
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function(result) {
+          console.log(result);
+          console.log('signed in');
+        })
+        .catch(function(error) {
+          console.log('error');
+        });
+    },
+    signout() {
+      console.log('signout');
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log('sign out');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  computed: {
+    mySession() {
+      return this.$store.getters.session;
+    }
   }
 };
 </script>

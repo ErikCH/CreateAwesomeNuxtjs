@@ -2,7 +2,7 @@
 <v-card>
   <v-container class="fluid grid-list-md">
     <v-layout class="row wrap">
-      <v-flex v-for="product in products" xs6 :key="product.title">
+      <v-flex v-for="product in myProducts" xs6 :key="product.title">
         <router-link :to="`product/${product.id}`">
         <Game :product="product">
            <v-card-actions>
@@ -33,8 +33,8 @@
 </v-card>
 </template>
 <script>
-import { db } from "../plugins/firebase";
-import Game from "../components/game";
+import { db } from '../plugins/firebase';
+import Game from '../components/game';
 
 export default {
   components: { Game },
@@ -45,8 +45,14 @@ export default {
   },
   firestore() {
     return {
-      products: db.collection("products")
+      products: db.collection('products')
     };
+  },
+  computed: {
+    myProducts() {
+      this.$store.dispatch('setProduct', this.products);
+      return this.products;
+    }
   }
 };
 </script>
