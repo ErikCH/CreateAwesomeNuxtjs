@@ -11,9 +11,9 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.11",
-    "@vue/cli-plugin-e2e-cypress": "^3.0.0-beta.11",
-    "@vue/cli-service": "^3.0.0-beta.11",
+    "@vue/cli-plugin-babel": "^3.4.1",
+    "@vue/cli-plugin-e2e-cypress": "^3.4.1",
+    "@vue/cli-service": "^3.4.1",
     "vue-template-compiler": "^2.5.16"
   },
   "browserslist": [
