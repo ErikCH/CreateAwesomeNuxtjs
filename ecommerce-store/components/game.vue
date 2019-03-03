@@ -3,7 +3,7 @@
   <div>
 
     <v-card>
-          <v-card-media :src="product.pic" class="media" height="300px">
+          <v-img :src="product.pic" class="media" height="300px">
             <v-container class="fill-height fluid">
               <v-layout>
                 <v-flex class="xs12 align-enter flexbox">
@@ -11,7 +11,7 @@
                 </v-flex>
               </v-layout>
             </v-container>
-          </v-card-media>
+          </v-img>
           <slot></slot>
         </v-card>
   </div>

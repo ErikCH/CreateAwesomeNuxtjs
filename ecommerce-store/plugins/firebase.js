@@ -14,9 +14,9 @@ const config = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
-  firebase
-    .firestore()
-    .settings({ timestampsInSnapshots: true });
+  // firebase
+  //   .firestore()
+  //   .settings();
 } else {
   firebase.app();
 }

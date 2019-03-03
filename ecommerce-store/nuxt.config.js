@@ -1,6 +1,7 @@
 const pkg = require('./package');
 
-const nodeExternals = require('webpack-node-externals');
+// const nodeExternals = require('webpack-node-externals');
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
   mode: 'universal',
@@ -24,7 +25,7 @@ module.exports = {
     ],
     router: {
       //new
-      middleware: 'session'
+      // middleware: 'session'
     },
     link: [
       {
@@ -55,7 +56,8 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/vuetify', '@/plugins/firebase'],
+  // plugins: ['@/plugins/vuetify', '@/plugins/firebase'],
+   plugins: [ '@/plugins/vuetify', '~/plugins/firebase'],
 
   /*
   ** Nuxt.js modules
@@ -75,17 +77,24 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    transpile: ['vuetify/lib'],
+    plugins: [new VuetifyLoaderPlugin()],
+    loaders: {
+      stylus: {
+        import: ["~assets/style/variables.styl"]
+      }
+    },
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      if (ctx.isServer) {
-        config.externals = [
-          nodeExternals({
-            whitelist: [/^vuetify/]
-          })
-        ];
-      }
+      // if (ctx.isServer) {
+      //   config.externals = [
+      //     nodeExternals({
+      //       whitelist: [/^vuetify/]
+      //     })
+      //   ];
+      // }
     }
   }
 };
