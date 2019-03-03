@@ -25,7 +25,7 @@ module.exports = {
     ],
     router: {
       //new
-      // middleware: 'session'
+      middleware: 'session'
     },
     link: [
       {
