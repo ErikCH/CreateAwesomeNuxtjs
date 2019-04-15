@@ -1,8 +1,8 @@
-import VueFire from "vuefire";
+import {firestorePlugin} from "vuefire";
 import Vue from "vue";
 import firebase from "firebase/app";
 import "firebase/firestore";
-Vue.use(VueFire);
+Vue.use(firestorePlugin);
 const config = {
   apiKey: "AIzaSyBP8jPc6k5llX2xcj_8QNgZDfnDGDd6_xo",
   authDomain: "ecommerce-91b8f.firebaseapp.com",
